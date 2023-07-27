@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html.dark {
+    @apply bg-primary text-white;
+}
+
+html, body, #root {
+    /*@apply h-full;*/
+}
