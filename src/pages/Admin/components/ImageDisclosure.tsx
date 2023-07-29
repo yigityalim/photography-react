@@ -15,7 +15,7 @@ export function ImageDisclosure(): React.JSX.Element {
         setError('')
         if (e.target.files && e.target.files.length > 0) {
             const file: File = e.target.files[0]
-            if (!file.type.startsWith('image/')) {
+            if (!file.type.startsWith('Image/')) {
                 setError('Yalnızca resim dosyaları yükleyebilirsiniz.')
                 setUploadedImage(null)
                 console.log(error)
@@ -32,7 +32,7 @@ export function ImageDisclosure(): React.JSX.Element {
         setIsDragging(false)
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
             const file: File = e.dataTransfer.files[0]
-            if (!file.type.startsWith('image/')) {
+            if (!file.type.startsWith('Image/')) {
                 setError('Yalnızca resim dosyaları yükleyebilirsiniz.')
                 setUploadedImage(null)
                 console.log(error)

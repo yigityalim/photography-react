@@ -1,6 +1,5 @@
 import { Button, DarkModeSwitch, Icon } from '@/components'
 import { useAuthState, useSignOut, useUpdateProfile } from 'react-firebase-hooks/auth'
-import { auth, storage } from '@/firebase.ts'
 import React, { Fragment, useState } from 'react'
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom'
 import { getDownloadURL, ref, uploadBytes, UploadResult } from 'firebase/storage'
@@ -14,31 +13,8 @@ export function Header(): React.JSX.Element {
     const { i18n } = useTranslation()
     const [isOpen, setIsOpen] = useState(false)
     const [displayName, setDisplayName] = useState<string>('')
-    const [signOut] = useSignOut(auth)
-    const [updateProfile] = useUpdateProfile(auth)
-    const [user, loading] = useAuthState(auth)
     const navigate: NavigateFunction = useNavigate()
-    const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
-        const selectedImage: File = e.target.files![0]
-        if (!selectedImage) return
-
-        if (selectedImage.type.split('/')[0] === 'image') {
-
-            const imageRef = ref(storage, `profile/${selectedImage.name + sha256(selectedImage.name)}`)
-
-            const snapshot: UploadResult = await uploadBytes(imageRef, selectedImage)
-            const url: string = await getDownloadURL(snapshot.ref)
-            await updateProfile({
-                displayName,
-                photoURL: url,
-            })
-
-            alert(i18n.language === 'en' ? 'Profile updated' : 'Profil güncellendi')
-        } else {
-            alert(i18n.language === 'en' ? 'Please select an image' : 'Lütfen bir resim seçin')
-        }
-    }
-    if (loading) return <div />
+    const user = false;
 
     return (
         <header className='px-6 py-4 w-full flex items-center justify-between'>
@@ -128,14 +104,14 @@ export function Header(): React.JSX.Element {
                                             <input
                                                 type='file'
                                                 id='image'
-                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => uploadImage(e)}
+                                                //onChange={(e: React.ChangeEvent<HTMLInputElement>) => uploadImage(e)}
                                                 className='hidden'
                                             />
                                         </div>
                                         <div className='flex flex-row items-center justify-between gap-x-2 w-full'>
                                             <input
                                                 type='text'
-                                                placeholder={user?.displayName || 'Ad Soyad'}
+                                                //placeholder={user?.displayName || 'Ad Soyad'}
                                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDisplayName(e.target.value)}
                                                 className={cn(
                                                     'border-2 border-gray-300 dark:border-gray-700 rounded-md p-2 focus:outline-none w-full dark:bg-secondary',
@@ -143,7 +119,7 @@ export function Header(): React.JSX.Element {
                                             />
                                             <Button
                                                 onClick={async () => {
-                                                    await updateProfile({ displayName })
+                                                    //await updateProfile({ displayName })
                                                     alert(i18n.language === 'en' ? 'Profile updated' : 'Profil güncellendi')
                                                 }}
                                                 variant='success'

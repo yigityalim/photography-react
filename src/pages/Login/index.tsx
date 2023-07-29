@@ -1,24 +1,15 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from '@/firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useTranslation } from 'react-i18next'
 import { Loader } from '@/components'
 
-export function Login(): React.JSX.Element {
+export default function Login(): React.JSX.Element {
 
-    const [user, loading, error] = useAuthState(auth)
     const { i18n } = useTranslation()
     const [email, setEmail] = React.useState<string>('')
     const [password, setPassword] = React.useState<string>('')
-
-    if (loading) return <Loader fullHeight={true} />
-    if (error) return <div>Error</div>
-    if (user) return <Navigate to='/admin' />
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        await signInWithEmailAndPassword(auth, email, password)
     }
 
     return (

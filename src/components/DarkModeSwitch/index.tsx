@@ -28,8 +28,6 @@ export function DarkModeSwitch({ className, type = 'dropdown' }: ThemeSwitchProp
             'html',
         ) as HTMLHtmlElement
         if (html) html.classList.toggle('dark', isDarkMode)
-
-
     }, [isDarkMode])
 
     if (type === 'button') {

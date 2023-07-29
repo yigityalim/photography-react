@@ -4,9 +4,10 @@ import { AdminLayout } from '@/pages/Admin/components'
 
 import Home from '@/pages/Home'
 import Portfolio from '@/pages/Portfolio'
-import Images from '@/pages/Images'
 import Admin from '@/pages/Admin'
-import { Login } from '@/pages/Login'
+import Login from '@/pages/Login'
+import Contact from '@/pages/Contact'
+import Image from '@/pages/Image'
 
 
 const router = createBrowserRouter([
@@ -23,8 +24,12 @@ const router = createBrowserRouter([
                 element: <Portfolio />,
             },
             {
-                path: '/images',
-                element: <Images />,
+                path: '/image/:id',
+                element: <Image />,
+            },
+            {
+                path: '/contact',
+                element: <Contact />,
             },
         ],
     },

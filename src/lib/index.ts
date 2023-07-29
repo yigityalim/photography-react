@@ -15,14 +15,14 @@ export const menu: MenuType[] = [
     },
     {
         id: 2,
-        name: 'images',
-        href: '/images',
+        name: 'Portfolyo',
+        href: '/portfolio',
         icon: 'gallery_thumbnail',
     },
     {
         id: 3,
-        name: 'portfolio',
-        href: '/portfolio',
+        name: 'Hakkımda',
+        href: '/contact',
         icon: 'person',
     },
 ]

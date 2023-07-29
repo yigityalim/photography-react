@@ -1,2 +1,5 @@
 export {useScroll} from './useScroll'
-export {useFetchImagesAndVideos} from './useFetchImagesAndVideos'
+export {useAuthor} from './useAuthor'
+export {usePosts} from './usePosts'
+export {useSocialMedia} from './useSocialMedia'
+export {usePostBySlug} from './usePostBySlug'

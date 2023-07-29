@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    @apply bg-gray
+}
+
 html.dark {
     @apply bg-primary text-white;
 }
 
 html, body, #root {
-    /*@apply h-full;*/
+    @apply h-full;
 }
