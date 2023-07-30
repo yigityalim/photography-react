@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { Icon, Loader } from '@/components'
 import { cn } from '@/utils'
 import { motion } from 'framer-motion'
-import { usePosts } from '@/hooks'
+import { useWeddings } from '@/hooks'
 import { Link } from 'react-router-dom'
 
 export default function Portfolio(): React.JSX.Element {
 
-    const { data, status } = usePosts()
+    const { data, status } = useWeddings()
     const [activeIndex, setActiveIndex] = React.useState<number>(0)
 
     useEffect(() => {
@@ -39,7 +39,7 @@ export default function Portfolio(): React.JSX.Element {
                             >
                                 <button
                                     className={cn(
-                                        'h-full flex md:hidden items-center rounded-full justify-center p-2 disabled:cursor-not-allowed',
+                                        'h-full flex md:hidden items-center justify-center p-2 disabled:cursor-not-allowed',
                                         activeIndex === 0 && 'opacity-0',
                                     )}
                                     disabled={activeIndex === 0}
@@ -51,19 +51,27 @@ export default function Portfolio(): React.JSX.Element {
                                     to={`/image/${image.slug}`}
                                     className='flex flex-col gap-y-4 items-center justify-center w-full h-full'
                                 >
-                                    <img
-                                        loading='lazy'
-                                        src={image.coverImage?.url}
-                                        alt='image'
-                                        className='h-96 object-contain select-none'
-                                    />
+                                    {image.isVideo ? (
+                                        <video
+                                            src={image.coverPhoto?.url}
+                                            className='h-96 object-contain select-none'
+                                            controls
+                                        />
+                                    ): (
+                                        <img
+                                            loading='lazy'
+                                            src={image.coverPhoto?.url}
+                                            alt='image'
+                                            className='h-96 object-contain select-none'
+                                        />
+                                    )}
                                     <span className='text-center text-primary dark:text-white italic font-anonymous'>
                                         {image.date}
                                     </span>
                                 </Link>
                                 <button
                                     className={cn(
-                                        'h-full flex md:hidden items-center rounded-full justify-center p-2 disabled:cursor-not-allowed',
+                                        'h-full flex md:hidden items-center justify-center p-2 disabled:cursor-not-allowed',
                                         activeIndex === data.length - 1 && 'opacity-0',
                                     )}
                                     disabled={activeIndex === data.length - 1}

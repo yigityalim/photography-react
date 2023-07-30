@@ -16,7 +16,6 @@ function MobileMenu(): React.JSX.Element {
     const [showMenu, setShowMenu] = React.useState(false)
     const show = useScroll(80)
     const { pathname } = useLocation()
-    console.log(pathname)
     const { id } = useParams();
     const { toggleTernaryDarkMode, isDarkMode } = useTernaryDarkMode()
     const { t } = useTranslation()

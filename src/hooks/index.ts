@@ -1,5 +1,5 @@
 export {useScroll} from './useScroll'
 export {useAuthor} from './useAuthor'
-export {usePosts} from './usePosts'
+export {useWeddings} from './useWeddings.ts'
 export {useSocialMedia} from './useSocialMedia'
-export {usePostBySlug} from './usePostBySlug'
+export {useWeddingsBySlug} from './useWeddingsBySlug'

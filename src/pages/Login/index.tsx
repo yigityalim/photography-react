@@ -1,7 +1,5 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Loader } from '@/components'
 
 export default function Login(): React.JSX.Element {
 

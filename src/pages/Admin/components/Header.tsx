@@ -1,20 +1,21 @@
 import { Button, DarkModeSwitch, Icon } from '@/components'
-import { useAuthState, useSignOut, useUpdateProfile } from 'react-firebase-hooks/auth'
 import React, { Fragment, useState } from 'react'
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom'
-import { getDownloadURL, ref, uploadBytes, UploadResult } from 'firebase/storage'
 import { Dialog, Transition } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/utils'
-import sha256 from 'crypto-js/sha256'
 
 export function Header(): React.JSX.Element {
 
     const { i18n } = useTranslation()
+    const [displayName, setDisplayName] = useState('')
     const [isOpen, setIsOpen] = useState(false)
-    const [displayName, setDisplayName] = useState<string>('')
     const navigate: NavigateFunction = useNavigate()
-    const user = false;
+    const user = {
+        photoURL: 'https://avatars.githubusercontent.com/u/44036562?v=4',
+        displayName: 'Yiğit'
+
+    }
 
     return (
         <header className='px-6 py-4 w-full flex items-center justify-between'>
@@ -95,7 +96,7 @@ export function Header(): React.JSX.Element {
                                                     )}
                                                 </label>
                                                 {user?.displayName ? (
-                                                    <h1 className='text-3xl font-bold italic w-full items-center justify-start flex'>{user.displayName}</h1>
+                                                    <h1 className='text-3xl font-bold italic w-full items-center justify-start flex'>{displayName}</h1>
                                                 ) : (
                                                     <h1 className='text-3xl font-bold italic w-full items-center justify-start flex'>Ad
                                                         Soyad</h1>
@@ -143,7 +144,7 @@ export function Header(): React.JSX.Element {
                 </Link>
                 <DarkModeSwitch className='w-12' />
                 <Button variant='danger' onClick={async () => {
-                    await signOut()
+                    //await signOut()
                     navigate('/admin/login')
                 }}>
                     {i18n.language === 'en' ? 'Sign Out' : 'Çıkış Yap'}

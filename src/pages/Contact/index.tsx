@@ -10,6 +10,7 @@ export default function Contact(): React.JSX.Element {
     const { i18n } = useTranslation()
     const id = v4()
     const isTablet = useMediaQuery('(min-width: 768px)')
+    const [name, setName] = React.useState('')
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -30,7 +31,7 @@ export default function Contact(): React.JSX.Element {
                 className='flex flex-col gap-y-4 md:flex-row md:gap-x-4 items-center justify-center w-full md:h-96'
             >
                 <div className='w-full md:w-1/2 h-full flex flex-col items-center justify-between gap-y-8 md:gap-y-8'>
-                    <Input type='text' placeholder={i18n.language === 'en' ? 'Your Name' : 'Adınız'} />
+                    <Input type='name' placeholder={i18n.language === 'en' ? 'Your Name' : 'Adınız'} text={name} setter={setName} />
                     <Input type='text' placeholder={i18n.language === 'en' ? 'Your Surname' : 'Soyadınız'} />
                     <Input type='email' placeholder={i18n.language === 'en' ? 'Your Email' : 'E-posta Adresiniz'} />
                     <div className='w-full hidden md:flex flex-row gap-x-2 items-center justify-center'>

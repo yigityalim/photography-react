@@ -1,28 +1,26 @@
 import React from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
-import { auth } from '@/firebase'
+import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Loader } from '@/components'
 
 export function Register(): React.JSX.Element {
 
     const { i18n } = useTranslation()
-    const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth)
-    const [user, loading, error] = useAuthState(auth)
+
 
     const navigate = useNavigate()
     const [email, setEmail] = React.useState<string>('')
     const [password, setPassword] = React.useState<string>('')
-
+/*
     if (loading)  return <Loader fullHeight={true} />
     if (error) return <div>Error</div>
+
     if (user) return <Navigate to='/admin' />
+
+ */
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            await createUserWithEmailAndPassword(email, password)
             navigate('/admin')
         } catch (error) {
             console.log(error)

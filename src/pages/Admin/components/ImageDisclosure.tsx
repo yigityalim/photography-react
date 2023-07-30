@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { useUploadContext } from '@/context'
 import { cn } from '@/utils'
 import { Button, Icon } from '@/components'
 
 export function ImageDisclosure(): React.JSX.Element {
-    const { uploadToFirebase } = useUploadContext()
-    const [uploadedImage, setUploadedImage] = useState<File | null>(null)
+    const [uploadedImage, setUploadedImage] = useState<File | FileList | null>(null)
     const [isDragging, setIsDragging] = useState(false)
     const [isPreviewing, setIsPreviewing] = useState(false)
     const [error, setError] = useState<string>('')
@@ -14,16 +12,8 @@ export function ImageDisclosure(): React.JSX.Element {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setError('')
         if (e.target.files && e.target.files.length > 0) {
-            const file: File = e.target.files[0]
-            if (!file.type.startsWith('Image/')) {
-                setError('Yalnızca resim dosyaları yükleyebilirsiniz.')
-                setUploadedImage(null)
-                console.log(error)
-                return
-            } else {
-                setIsPreviewing(true)
-                setUploadedImage(file)
-            }
+            const file: FileList = e.target.files
+            console.log(file)
         }
     }
 
@@ -31,33 +21,31 @@ export function ImageDisclosure(): React.JSX.Element {
         e.preventDefault()
         setIsDragging(false)
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            const file: File = e.dataTransfer.files[0]
-            if (!file.type.startsWith('Image/')) {
-                setError('Yalnızca resim dosyaları yükleyebilirsiniz.')
-                setUploadedImage(null)
-                console.log(error)
-                return
-            } else {
-                setIsPreviewing(true)
-                setUploadedImage(file)
-            }
+            const file: FileList = e.dataTransfer.files
+            console.log(file)
         }
     }
 
     const handlePostImage = async () => {
         setIsUploading(true)
-        try {
-            await uploadToFirebase(uploadedImage!, 'images')
-            console.log('Resim yüklendi')
-            setUploadedImage(null)
-            setIsPreviewing(false)
-            setError('')
-        } catch (error) {
-            console.error('Resim yükleme hatası:', error)
-        } finally {
-            setIsUploading(false)
-        }
     }
+
+    async function uploadToHygraph(file: File) {
+        const formData = new FormData()
+        formData.append('file', file)
+        formData.append('upload_preset', 'hygaph')
+        const res = await fetch(
+            import.meta.env.VITE_GRAPHCMS_UPLOAD_URL, {
+                method: 'POST',
+                headers: { Authorization: `Bearer ${import.meta.env.VITE_GRAPHCMS_ACCES_TOKEN}`, },
+                body: formData,
+            },
+        )
+        const data = await res.json()
+        return data.secure_url
+    }
+
+    console.log('uploadedImage', uploadedImage)
 
     return (
         <div
