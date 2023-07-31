@@ -1,26 +1,27 @@
-import React, {HTMLAttributes, ReactNode} from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react'
 
 type IconProps<
-  T extends keyof JSX.IntrinsicElements
-    | React.ComponentType<
-    Omit<HTMLAttributes<T>, 'as'> & { children?: ReactNode }
-  > = 'span'
+    T extends keyof React.JSX.IntrinsicElements
+        | React.ComponentType<
+        Omit<HTMLAttributes<T>, 'as'> & { children?: ReactNode }
+    > = 'span'
 > = {
-  as?: T | keyof JSX.IntrinsicElements;
-  children: ReactNode;
-  className?: string;
+    as?: T | keyof React.JSX.IntrinsicElements;
+    children: ReactNode;
+    className?: string;
+    disabled?: boolean;
 } & Omit<HTMLAttributes<T>, 'as'>;
 
 export function Icon<
-  T extends keyof JSX.IntrinsicElements
-    | React.ComponentType<Omit<HTMLAttributes<T>, 'as'> & {
-    children?: ReactNode
-  }
-  > = 'span'
->({as: Component = 'span', children, className, ...rest}: IconProps<T>): React.JSX.Element {
-  return React.createElement(Component, {
-    ...rest,
-    className: `material-symbols-outlined ${className ?? ''}`,
-    children,
-  });
+    T extends keyof React.JSX.IntrinsicElements
+        | React.ComponentType<Omit<HTMLAttributes<T>, 'as'> & {
+        children?: ReactNode
+    }
+    > = 'span'
+>({ as: Component = 'span', children, className, ...rest }: IconProps<T>): React.JSX.Element {
+    return React.createElement(Component, {
+        ...rest,
+        className: `material-symbols-outlined ${className ?? ''}`,
+        children,
+    })
 }

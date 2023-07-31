@@ -1,13 +1,12 @@
 import { gql } from 'graphql-request'
-export const getWeddingsBySlug = gql`
+export const albumBySlug = gql`
 query getWeddingsBySlug($slug: String!) {
-  weddings(where: {slug: $slug}) {
-    id
-    title
+  album(where: {slug: $slug}) {
+    baslik
     slug
-    date
-    isVideo
-    images {
+    cekimTarihi
+    konum
+    resimler(last: 100) {
       url
       width
       height

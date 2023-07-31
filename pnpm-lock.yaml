@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@graphcms/react-image':
+    specifier: ^1.1.0
+    version: 1.1.0(react-dom@18.2.0)(react@18.2.0)
   '@headlessui/react':
     specifier: ^1.7.15
     version: 1.7.15(react-dom@18.2.0)(react@18.2.0)
@@ -2298,6 +2301,18 @@ packages:
 
   /@firebase/webchannel-wrapper@0.10.1:
     resolution: {integrity: sha512-Dq5rYfEpdeel0bLVN+nfD1VWmzCkK+pJbSjIawGE+RY4+NIJqhbUDDQjvV0NUK84fMfwxvtFoCtEe70HfZjFcw==}
+    dev: false
+
+  /@graphcms/react-image@1.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-qEv+g3igtBLgW/K7JzmlxbKvWvKgiv/LSugU9NwJVjtDDBX/rWJCcX7vmf7Stni+w0Vrm7F8fi14S0iWHth+fQ==}
+    peerDependencies:
+      react: ^16.x.x || ^15.6.0
+      react-dom: ^16.x.x || ^15.6.0
+    dependencies:
+      intersection-observer: 0.5.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@graphql-typed-document-node/core@3.2.0(graphql@16.7.1):
@@ -4654,6 +4669,10 @@ packages:
 
   /inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
+
+  /intersection-observer@0.5.1:
+    resolution: {integrity: sha512-Zd7Plneq82kiXFixs7bX62YnuZ0BMRci9br7io88LwDyF3V43cQMI+G5IiTlTNTt+LsDUppl19J/M2Fp9UkH6g==}
+    dev: false
 
   /invariant@2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}

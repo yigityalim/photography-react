@@ -1,13 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Layout } from '@/components'
-import { AdminLayout } from '@/pages/Admin/components'
 
 import Home from '@/pages/Home'
-import Portfolio from '@/pages/Portfolio'
-import Admin from '@/pages/Admin'
-import Login from '@/pages/Login'
 import Contact from '@/pages/Contact'
 import Image from '@/pages/Image'
+import Albums from '@/pages/Albums'
 
 
 const router = createBrowserRouter([
@@ -20,8 +17,8 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: '/portfolio',
-                element: <Portfolio />,
+                path: '/albums',
+                element: <Albums />,
             },
             {
                 path: '/image/:id',
@@ -32,27 +29,7 @@ const router = createBrowserRouter([
                 element: <Contact />,
             },
         ],
-    },
-    {
-        element: <AdminLayout />,
-        children: [
-            {
-                index: true,
-                path: '/admin',
-                element: <Admin />,
-            },
-            {
-                path: '/admin/login',
-                element: <Login />,
-            },
-            /*
-            {
-                path: '/admin/register',
-                element: <Register />,
-            }
-             */
-        ],
-    },
+    }
 ])
 
 export default router

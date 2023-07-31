@@ -1,9 +1,8 @@
 import { useQuery, UseQueryResult } from 'react-query'
-import { GraphQLClient } from 'graphql-request';
 import { getAuthor } from '@/queries';
 import type { Author } from '@/types';
+import { graphQLClient } from '@/hooks/graphql.ts'
 
-const graphQLClient = new GraphQLClient(import.meta.env.VITE_GRAPHCMS_URL);
 
 export function useAuthor(): UseQueryResult<Author> {
     return useQuery<Author>('get-author', async () => {

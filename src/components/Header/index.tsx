@@ -49,7 +49,7 @@ function MobileMenu(): React.JSX.Element {
                 )}
             >
                 {pathname === `/image/${id}` && (
-                    <Link to='/portfolio' className='w-full'>
+                    <Link to='/albums' className='w-full'>
                         <Icon className='text-3xl font-bold'>arrow_back</Icon>
                     </Link>
                 )}

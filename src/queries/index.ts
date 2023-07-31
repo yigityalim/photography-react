@@ -1,4 +1,5 @@
 export {getAuthor} from './author';
-export {weddings} from './weddings'
-export {getWeddingsBySlug} from './weddingsBySlug'
+export {albums} from './albums'
+export {albumBySlug} from './albumBySlug'
 export {getSocialMedia} from './socialMedia'
+export {homePageQuery} from './homePage'

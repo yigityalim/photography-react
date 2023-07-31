@@ -1,5 +1,10 @@
-export {useScroll} from './useScroll'
+export {useScroll, useHandleScroll} from './useScroll'
 export {useAuthor} from './useAuthor'
-export {useWeddings} from './useWeddings.ts'
+export {useAlbums} from './useAlbums.ts'
 export {useSocialMedia} from './useSocialMedia'
-export {useWeddingsBySlug} from './useWeddingsBySlug'
+export {useAlbumBySlug} from './useAlbumBySlug.ts'
+export {useHomePageCover} from './useHomePageCover'
+
+export {graphQLClient} from './graphql'
+
+export {useAlbumContext} from './useAlbumContext'
