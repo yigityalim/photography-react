@@ -3,8 +3,10 @@ import { Layout } from '@/components'
 
 import Home from '@/pages/Home'
 import Contact from '@/pages/Contact'
-import Image from '@/pages/Image'
-import Albums from '@/pages/Albums'
+import Album from '@/pages/Album'
+import Cover from '@/pages/Cover'
+import Pictures from '@/pages/Pictures'
+import NotFound from '@/pages/NotFound'
 
 
 const router = createBrowserRouter([
@@ -18,18 +20,26 @@ const router = createBrowserRouter([
             },
             {
                 path: '/albums',
-                element: <Albums />,
+                element: <Cover />,
             },
             {
-                path: '/image/:id',
-                element: <Image />,
+                path: '/album/:id',
+                element: <Album />,
+            },
+            {
+                path: '/album/:id/:customer',
+                element: <Pictures />,
             },
             {
                 path: '/contact',
                 element: <Contact />,
             },
+            {
+                path: '*',
+                element: <NotFound />,
+            },
         ],
-    }
+    },
 ])
 
 export default router

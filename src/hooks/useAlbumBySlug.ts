@@ -1,13 +1,13 @@
 import { useQuery, UseQueryResult } from 'react-query'
 import { albumBySlug } from '@/queries'
-import type { Album } from '@/types'
+import type { Cover } from '@/types'
 import { graphQLClient } from '@/hooks'
 
-export function useAlbumBySlug(slug: string): UseQueryResult<Album> {
-    return useQuery<Album>('get-wedding-by-slug', async (): Promise<Album> => {
-        const { album } = await graphQLClient.request<never>(albumBySlug, {
-            slug,
+export function useAlbumBySlug(tip: string | undefined = 'dugun'): UseQueryResult<Cover[]> {
+    return useQuery<Cover[]>('get-wedding-by-slug', async (): Promise<Cover[]> => {
+        const { albumPlural } = await graphQLClient.request<never>(albumBySlug, {
+            tip
         })
-        return album
+        return albumPlural
     })
 }

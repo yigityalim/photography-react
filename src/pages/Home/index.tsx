@@ -39,7 +39,7 @@ function DesktopView({ buttonText, }: { buttonText: string }) {
                     <h2 className='text-3xl font-bold text-start w-full text-primary dark:text-gray italic'>Ben bir
                         fotoğrafçıyım</h2>
                     <div className='flex flex-row w-full gap-x-6'>
-                        <Link to='/albums'
+                        <Link to='/cover'
                               className='bg-secondary dark:bg-gray text-white dark:text-primary w-32 flex items-center justify-center rounded-md hover:scale-110 transition active:scale-95'>
                             {buttonText}
                         </Link>

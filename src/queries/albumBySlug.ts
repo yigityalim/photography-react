@@ -1,17 +1,14 @@
 import { gql } from 'graphql-request'
+
 export const albumBySlug = gql`
-query getWeddingsBySlug($slug: String!) {
-  album(where: {slug: $slug}) {
+query AblumByTip( $tip: Tip! ) {
+  albumPlural(where: { tip: $tip }) {
     baslik
     slug
-    cekimTarihi
+    tarih
     konum
-    resimler(last: 100) {
-      url
-      width
-      height
-    }
+    tip
+    kapakFotografi { url width height }
   }
 }
-
 `

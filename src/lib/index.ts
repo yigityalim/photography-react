@@ -15,8 +15,8 @@ export const menu: MenuType[] = [
     },
     {
         id: 2,
-        name: 'Düğünler',
-        href: '/albums',
+        name: 'Albümler',
+        href: '/cover',
         icon: 'gallery_thumbnail',
     },
     {
