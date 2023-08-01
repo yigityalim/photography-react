@@ -19,11 +19,11 @@ export default function Contact(): React.JSX.Element {
     return (
         <div
             className={cn(
-                'flex flex-col gap-y-12 items-center justify-center w-full h-full p-12 md:p-24',
+                'flex flex-col gap-y-12 items-center justify-center w-full h-full p-4 md:p-24',
                 'bg-gray dark:bg-primary',
             )}
         >
-            <h1 className='text-4xl font-bold text-gray-900 dark:text-gray-100'>
+            <h1 className='text-4xl text-start w-full font-bold text-gray-900 dark:text-gray-100'>
                 {i18n.language === 'tr' ? 'İletişim Formu' : 'Contact Form'}
             </h1>
             <form

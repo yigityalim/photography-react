@@ -8,6 +8,7 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
     placeholder?: string;
     className?: string;
     text?: string;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     setter?: React.Dispatch<React.SetStateAction<string>>;
 };
 
@@ -17,7 +18,7 @@ export function Input(
         placeholder,
         className,
         text,
-        setter,
+        onChange,
         ...props
     }: InputProps,
 ): React.ReactElement {
@@ -41,7 +42,7 @@ export function Input(
                 id={id}
                 type={type}
                 value={text}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setter(e.target.value)}
+                onChange={onChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 className={cn(

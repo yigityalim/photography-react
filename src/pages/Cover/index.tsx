@@ -1,23 +1,30 @@
 import React from 'react'
 import { Loader } from '@/components'
-import { useAlbumContext } from '@/hooks'
+import { useCover } from '@/hooks'
 import GraphImage from '@graphcms/react-image'
 import { Link } from 'react-router-dom'
+import { useMediaQuery } from 'usehooks-ts'
+import { cn } from '@/utils'
 
 export default function Albums(): React.JSX.Element {
 
-    const { kapak, status } = useAlbumContext()
+    const { data: kapak, status } = useCover()
+    const isMobile = useMediaQuery('(max-width: 640px)')
+
     if (status === 'loading') return <Loader fullHeight={true} />
     if (!kapak) return <Loader fullHeight={true} />
 
     return (
-        <div className='relative w-full h-full flex flex-col items-center justify-center gap-y-12 p-4'>
-            <div className='w-full h-full columns-1 md:columns-2 lg:columns-3'>
-                {kapak.map(({ slug, kapakFotografi, baslik }, index: number) => (
+        <div className='relative z-[2001] w-full h-full flex flex-col items-center justify-center gap-y-12 p-4'>
+            <div className={cn(
+                'w-full h-full',
+                isMobile ? 'flex flex-col gap-y-4 items-center justify-center' : 'columns-2 lg:columns-4'
+            )}>
+                {kapak.map(({ slug, kapakFotografi, baslik, id }) => (
                     <Link
                         to={`/album/${slug}`}
-                        key={index}
-                        className='relative w-[400px] overflow-hidden cursor-pointer'
+                        key={id}
+                        className='relative w-full h-full overflow-hidden cursor-pointer z-[2001]'
                     >
                         <GraphImage
                             image={{
@@ -27,7 +34,7 @@ export default function Albums(): React.JSX.Element {
                             }}
                             fit='clip'
                         />
-                        <p className='absolute bottom-4 left-4 text-white font-bold text-3xl italic'>
+                        <p className='absolute bottom-12 left-4 text-white font-bold text-3xl italic'>
                             {baslik}
                         </p>
                     </Link>

@@ -7,11 +7,13 @@ import Album from '@/pages/Album'
 import Cover from '@/pages/Cover'
 import Pictures from '@/pages/Pictures'
 import NotFound from '@/pages/NotFound'
+import ErrorBoundary from '@/pages/ErrorBoundary'
 
 
 const router = createBrowserRouter([
     {
         element: <Layout />,
+        errorElement: <ErrorBoundary />,
         children: [
             {
                 index: true,

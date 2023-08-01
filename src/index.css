@@ -11,5 +11,7 @@ html.dark {
 }
 
 html, body, #root {
+    /*
     @apply h-full;
+     */
 }

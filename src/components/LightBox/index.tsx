@@ -90,7 +90,7 @@ export function LightBox(
                     openBottomBar ? 'bottom-0' : '-bottom-96',
                 )}
             >
-                {images.map((image, index) => (
+                {images.map((image: string, index: number) => (
                     <img
                         key={index}
                         src={image}

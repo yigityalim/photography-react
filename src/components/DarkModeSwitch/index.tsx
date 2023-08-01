@@ -37,7 +37,7 @@ export function DarkModeSwitch({ className, type = 'dropdown' }: ThemeSwitchProp
                     <button
                         key={mode}
                         className={cn(
-                            'z-20 flex px-4 p-2 flex-1 text-sm items-center justify-center',
+                            'flex px-4 p-2 flex-1 text-sm items-center justify-center',
                             ternaryDarkMode === mode && 'bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded',
                         )}
                         onClick={() => setTernaryDarkMode(mode as TernaryDarkMode)}
@@ -53,7 +53,7 @@ export function DarkModeSwitch({ className, type = 'dropdown' }: ThemeSwitchProp
         <Menu as='div' className={cn('relative w-24', className)}>
             <Menu.Button
                 className={cn(
-                    'z-20 flex w-full px-4 p-2 flex-1 text-sm items-center justify-center bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded outline-none focus:outline-none',
+                    'flex w-full px-4 p-2 flex-1 text-sm items-center justify-center bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded outline-none focus:outline-none',
                 )}
             >
                 {themeOptions.map(({ mode, icon }) => (
@@ -66,7 +66,7 @@ export function DarkModeSwitch({ className, type = 'dropdown' }: ThemeSwitchProp
                 animate={{ opacity: 1, y: 0}}
                 exit={{ opacity: 0, y: -10}}
                 transition={{ duration: 0.3 }}
-                className='absolute right-0 w-full mt-2 origin-top-right bg-white dark:bg-zinc-900 border dark:border-white border-zinc-900 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
+                className='absolute z-[9999] right-0 w-full mt-2 origin-top-right bg-white dark:bg-zinc-900 border dark:border-white border-zinc-900 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
             >
                 <div className='px-1 py-1 space-y-1'>
                     {themeOptions.map(({ mode, icon }) => (

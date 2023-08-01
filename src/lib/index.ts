@@ -4,6 +4,9 @@ export type MenuType = {
     name: string;
     href: string;
     icon: string;
+    children?: {
+        id: number
+    }[] | null;
 }
 
 export const menu: MenuType[] = [
@@ -16,8 +19,13 @@ export const menu: MenuType[] = [
     {
         id: 2,
         name: 'Albümler',
-        href: '/cover',
+        href: '/albums',
         icon: 'gallery_thumbnail',
+        children: [
+            {
+                id: 1,
+            }
+        ],
     },
     {
         id: 3,

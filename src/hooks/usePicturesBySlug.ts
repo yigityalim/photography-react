@@ -1,13 +1,26 @@
 import { useQuery, UseQueryResult } from 'react-query'
-import { albumBySlug } from '@/queries'
-import type { Cover } from '@/types'
+import type { Image } from '@/types'
 import { graphQLClient } from '@/hooks'
+import { imageBySlug } from '@/queries/'
+import { useEffect } from 'react'
 
-export function usePicturesBySlug(tip: string | undefined = 'dugun'): UseQueryResult<Cover[]> {
-    return useQuery<Cover[]>('get-wedding-by-slug', async (): Promise<Cover[]> => {
-        const { albumPlural } = await graphQLClient.request<never>(albumBySlug, {
-            tip
-        })
-        return albumPlural
-    })
+export function usePicturesBySlug(slug: string | undefined): UseQueryResult<Image> {
+    const queryKey: (string | undefined)[] = ['get-wedding-by-slug', slug];
+    const queryResult: UseQueryResult<Image> = useQuery<Image>(queryKey, async (): Promise<Image> => {
+        const { album } = await graphQLClient.request<never>(imageBySlug, {
+            slug
+        });
+        return album;
+    });
+
+    useEffect(() => {
+        return () => {
+            queryResult.remove();
+        };
+    }, []);
+
+    return queryResult;
 }
+
+
+
