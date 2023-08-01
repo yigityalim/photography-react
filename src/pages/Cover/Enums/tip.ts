@@ -1,4 +1,4 @@
-export enum SEC {
+export enum Tip {
     DUGUN = 'dugun',
     NISAN = 'nisan',
     DOGUMGUNU = 'dogumGunu',

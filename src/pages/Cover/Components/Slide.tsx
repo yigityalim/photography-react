@@ -7,8 +7,27 @@ import Image from '@graphcms/react-image'
 import { useAlbumContext } from '@/hooks'
 
 export function Slide(): React.JSX.Element {
+    const { filteredData, activeIndex, setActiveIndex } = useAlbumContext()
 
-    const { activeIndex, setActiveIndex, filteredData } = useAlbumContext()
+    if (filteredData.length === 0) return (
+        <div className='flex items-center justify-center w-full h-full'>
+            <div className='flex flex-col gap-y-4 items-center justify-center'>
+                <Icon children='error_outline' className='text-4xl text-red-400' />
+                <p className='text-4xl font-bold text-red-400'>
+                    Albüm Bulunamadı
+                </p>
+                <Link
+                    to='/'
+                    className='flex items-center justify-center gap-x-2'
+                >
+                    <Icon children='arrow_back' className='text-4xl font-bold' />
+                    <span className='text-2xl font-bold'>
+                        Geri Dön
+                    </span>
+                </Link>
+            </div>
+        </div>
+    )
 
     return (
         <>
@@ -62,7 +81,7 @@ export function Slide(): React.JSX.Element {
                                 <Icon className='flex items-center justify-center' children='arrow_back' />
                             </button>
                             <Link
-                                to={`/image/${image.slug}`}
+                                to={`/album/${image.slug}`}
                                 className='flex flex-col gap-y-4 items-center justify-center w-full h-full'
                             >
                                 {image.isVideo ? (
