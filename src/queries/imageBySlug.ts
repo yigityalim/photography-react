@@ -8,7 +8,7 @@ export const imageBySlug = gql`
         tarih
         konum
         tip
-        resimler {
+        resimler(first: 100) {
           url
           width
           height

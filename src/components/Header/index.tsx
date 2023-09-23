@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useMediaQuery, useTernaryDarkMode } from 'usehooks-ts'
 import { DarkModeSwitch, Icon } from '@/components'
-import { cn } from '@/utils'
+import { cn } from '@/lib/utils'
 import { Transition } from '@headlessui/react'
 import { menu } from '@/lib'
-import { Link, NavLink, useLocation, useParams } from 'react-router-dom'
+import { Link, NavLink, useLocation, useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 export function Header(): React.JSX.Element {
@@ -14,6 +14,7 @@ export function Header(): React.JSX.Element {
 function MobileMenu(): React.JSX.Element {
     const [showMenu, setShowMenu] = React.useState(false)
     const { pathname } = useLocation()
+    const navigate = useNavigate()
     const { id, customer } = useParams()
     const { toggleTernaryDarkMode, isDarkMode } = useTernaryDarkMode()
     const { t } = useTranslation()
@@ -26,30 +27,30 @@ function MobileMenu(): React.JSX.Element {
         if (pathname === '/') setShowMenu(false)
     }, [pathname])
 
-
     useEffect(() => {
-        const html: HTMLHtmlElement = document.querySelector(
-            'html',
-        ) as HTMLHtmlElement
+        const html: HTMLHtmlElement = document.querySelector('html') as HTMLHtmlElement
         if (html) html.classList.toggle('dark', isDarkMode)
     }, [isDarkMode])
 
     return (
         <>
-            <header
-                className='w-full flex items-center justify-between p-12 px-16 text-primary dark:text-white relative z-[2002]'>
+            <header className='w-full flex items-center justify-between p-12 px-16 text-primary dark:text-white relative z-[2002]'>
                 {pathname === `/album/${id}` || pathname === `/album/${id}/${customer}` ? (
-                    <Link to='/albums' className='w-full'>
+                    <button onClick={() => navigate(-1)}>
                         <Icon className='text-3xl font-bold'>arrow_back</Icon>
-                    </Link>
+                    </button>
                 ) : (
-                    <Link to='/' className='text-2xl font-bold text-start w-full italic'>Mesut.</Link>
+                    <Link to='/' className='text-2xl font-bold text-start w-full italic'>
+                        Mesut.
+                    </Link>
                 )}
-                <div className={cn(
-                    'flex flex-row gap-x-2 items-center justify-center',
-                    { 'hidden': pathname !== '/' },
-                    { 'flex': pathname === '/' },
-                )}>
+                <div
+                    className={cn(
+                        'flex flex-row gap-x-2 items-center justify-center',
+                        { hidden: pathname !== '/' },
+                        { flex: pathname === '/' }
+                    )}
+                >
                     <Icon
                         onClick={toggleTernaryDarkMode}
                         className='text-xl cursor-pointer transform hover:scale-110 transition duration-300'
@@ -57,12 +58,14 @@ function MobileMenu(): React.JSX.Element {
                         {isDarkMode ? 'light_mode' : 'dark_mode'}
                     </Icon>
                 </div>
-                <button className={cn(
-                    'h-8 w-8 items-center justify-center border-gray-200 ',
-                    { 'flex': pathname !== '/' },
-                    { 'hidden': pathname === '/' },
-                )}
-                        onClick={() => setShowMenu(!showMenu)}>
+                <button
+                    className={cn(
+                        'h-8 w-8 items-center justify-center border-gray-200 ',
+                        { flex: pathname !== '/' },
+                        { hidden: pathname === '/' }
+                    )}
+                    onClick={() => setShowMenu(!showMenu)}
+                >
                     <span className='sr-only'>Open main menu</span>
                     <Icon className='text-4xl'>menu</Icon>
                 </button>
@@ -89,19 +92,19 @@ function MobileMenu(): React.JSX.Element {
                                 to={href}
                                 key={id}
                                 onClick={() => setShowMenu(false)}
-                                className={({ isActive }) => cn(
-                                    'text-4xl font-black tracking-wider text-center capitalize w-full text-secondary dark:text-white italic',
-                                    isActive && 'text-primary dark:text-dark-gray',
-                                    // TODO /image path'ini düzelt
-                                )}>
+                                className={({ isActive }) =>
+                                    cn(
+                                        'text-4xl font-black tracking-wider text-center capitalize w-full text-secondary dark:text-white italic',
+                                        isActive && 'text-primary dark:text-dark-gray'
+                                        // TODO /image path'ini düzelt
+                                    )
+                                }
+                            >
                                 {t(name)}
                             </NavLink>
                         ))}
                     </div>
-                    <Icon
-                        className=' text-5xl text-primary dark:text-white'
-                        onClick={() => setShowMenu(false)}
-                    >
+                    <Icon className=' text-5xl text-primary dark:text-white' onClick={() => setShowMenu(false)}>
                         close
                     </Icon>
                 </div>
@@ -116,21 +119,20 @@ function DesktopMenu(): React.JSX.Element {
     const { toggleTernaryDarkMode, isDarkMode } = useTernaryDarkMode()
 
     useEffect(() => {
-        const html: HTMLHtmlElement = document.querySelector(
-            'html',
-        ) as HTMLHtmlElement
+        const html: HTMLHtmlElement = document.querySelector('html') as HTMLHtmlElement
         if (html) html.classList.toggle('dark', isDarkMode)
     }, [isDarkMode])
 
     return (
-        <header
-            className='flex items-center justify-between p-6'>
+        <header className='flex items-center justify-between p-6'>
             <h1 className='text-4xl font-black text-start italic'>LO</h1>
-            <div className={cn(
-                'flex flex-row gap-x-2 items-center justify-center',
-                { 'hidden': pathname !== '/' },
-                { 'flex': pathname === '/' },
-            )}>
+            <div
+                className={cn(
+                    'flex flex-row gap-x-2 items-center justify-center',
+                    { hidden: pathname !== '/' },
+                    { flex: pathname === '/' }
+                )}
+            >
                 <Icon
                     onClick={toggleTernaryDarkMode}
                     className='text-xl cursor-pointer transform hover:scale-110 transition duration-300'
@@ -138,20 +140,28 @@ function DesktopMenu(): React.JSX.Element {
                     {isDarkMode ? 'light_mode' : 'dark_mode'}
                 </Icon>
             </div>
-            <div className={cn(
-                'flex-row gap-x-2 items-center justify-end flex w-full',
-                { 'hidden': pathname === '/' },
-                { 'flex': pathname !== '/' },
-            )}>
+            <div
+                className={cn(
+                    'flex-row gap-x-2 items-center justify-end flex w-full',
+                    { hidden: pathname === '/' },
+                    { flex: pathname !== '/' }
+                )}
+            >
                 <DarkModeSwitch />
                 {menu.map(({ id, href, name }) => (
                     <NavLink
                         key={id}
                         to={href}
-                        className={({ isActive }) => cn('flex flex-row items-center justify-center px-4 py-2 active:scale-95 transition rounded capitalize', {
-                            'bg-zinc-900 text-white dark:bg-white dark:text-black': isActive,
-                            'hover:bg-zinc-800 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900': !isActive,
-                        })}
+                        className={({ isActive }) =>
+                            cn(
+                                'flex flex-row items-center justify-center px-4 py-2 active:scale-95 transition rounded capitalize',
+                                {
+                                    'bg-zinc-900 text-white dark:bg-white dark:text-black': isActive,
+                                    'hover:bg-zinc-800 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900':
+                                        !isActive,
+                                }
+                            )
+                        }
                     >
                         <h1 className='text-lg font-bold'>{t(name)}</h1>
                     </NavLink>

@@ -7,7 +7,7 @@ import { Loader } from '@/components'
 export default function App(): React.JSX.Element {
     return (
         <Trans>
-            <RouterProvider fallbackElement={<Loader/>} router={router} />
+            <RouterProvider fallbackElement={<Loader />} router={router} />
         </Trans>
     )
 }

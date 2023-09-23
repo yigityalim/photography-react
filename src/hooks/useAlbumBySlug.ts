@@ -15,9 +15,9 @@ export function useAlbumBySlug(tip: string | undefined = 'dugun'): UseQueryResul
     }, []);
 
     return useQuery<Cover[]>(queryKey, async (): Promise<Cover[]> => {
-        const { albumPlural } = await graphQLClient.request<never>(albumBySlug, {
+        const { albums } = await graphQLClient.request<never>(albumBySlug, {
             tip
         });
-        return albumPlural;
+        return albums;
     });
 }

@@ -10,7 +10,6 @@ export default function Home(): React.JSX.Element {
 
 function DesktopView(): React.JSX.Element {
     const { data, isLoading, status } = useHome()
-
     if (isLoading) return <Loader fullHeight={true} />
     if (status === 'idle') return <Loader fullHeight={true} />
     if (!data) return <Loader fullHeight={true} />
@@ -61,20 +60,21 @@ function DesktopView(): React.JSX.Element {
 
 function MobileView(): React.JSX.Element {
     const { data, isLoading, status } = useHome()
+    console.log(data)
 
     if (isLoading) return <Loader fullHeight={true} />
     if (status === 'idle') return <Loader fullHeight={true} />
     if (!data) return <Loader fullHeight={true} />
-    const randomIndex = (): number => Math.floor(Math.random() * data[0].kapakFotograflari.length)
+    const randomIndex = (): number => data ? Math.floor(Math.random() * data[0].kapakFotograflari.length) : 0
 
     return (
         <div className='flex justify-center items-end h-[calc(100dvh-8rem)] bg-gray-800 text-white pb-10 px-16'>
-            {data.map(({ id, baslik, aciklama }) => (
+            {data.map(({ id, baslik, aciklama, kapakFotograflari }) => (
                 <React.Fragment key={id}>
                     <div
                         className='absolute bottom-0 left-0 right-0 top-1/2 z-[101] bg-gradient-to-t from-black to-transparent dark:from-primary dark:to-transparent' />
                     <img className='fixed inset-0 z-[100] w-full h-full object-cover'
-                         src={data[0].kapakFotograflari[randomIndex()].url} alt='placeholder' />
+                         src={kapakFotograflari[randomIndex()].url} alt='placeholder' />
                     <div className='flex flex-col gap-y-8 items-center justify-center z-[102]'>
                         <h1 className='text-5xl font-black leading-tight tracking-wider text-start w-full text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 to-white italic'>
                             {baslik}

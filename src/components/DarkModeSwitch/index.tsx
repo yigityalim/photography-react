@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { useTernaryDarkMode } from 'usehooks-ts'
 import { Menu } from '@headlessui/react'
 import { Icon } from '@/components'
-import { cn } from '@/utils'
+import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 
-export declare type TernaryDarkMode = 'system' | 'dark' | 'light';
+export declare type TernaryDarkMode = 'system' | 'dark' | 'light'
 type ThemeSwitchProps = {
-    className?: string;
-    type?: 'dropdown' | 'button';
+    className?: string
+    type?: 'dropdown' | 'button'
 }
 const themeOptions = [
     { mode: 'light', icon: 'light_mode' },
@@ -17,16 +17,10 @@ const themeOptions = [
 ]
 
 export function DarkModeSwitch({ className, type = 'dropdown' }: ThemeSwitchProps): React.JSX.Element {
-    const {
-        isDarkMode,
-        setTernaryDarkMode,
-        ternaryDarkMode,
-    } = useTernaryDarkMode()
+    const { isDarkMode, setTernaryDarkMode, ternaryDarkMode } = useTernaryDarkMode()
 
     useEffect(() => {
-        const html: HTMLHtmlElement = document.querySelector(
-            'html',
-        ) as HTMLHtmlElement
+        const html: HTMLHtmlElement = document.querySelector('html') as HTMLHtmlElement
         if (html) html.classList.toggle('dark', isDarkMode)
     }, [isDarkMode])
 
@@ -38,7 +32,8 @@ export function DarkModeSwitch({ className, type = 'dropdown' }: ThemeSwitchProp
                         key={mode}
                         className={cn(
                             'flex px-4 p-2 flex-1 text-sm items-center justify-center',
-                            ternaryDarkMode === mode && 'bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded',
+                            ternaryDarkMode === mode &&
+                                'bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded'
                         )}
                         onClick={() => setTernaryDarkMode(mode as TernaryDarkMode)}
                     >
@@ -53,18 +48,16 @@ export function DarkModeSwitch({ className, type = 'dropdown' }: ThemeSwitchProp
         <Menu as='div' className={cn('relative w-24', className)}>
             <Menu.Button
                 className={cn(
-                    'flex w-full px-4 p-2 flex-1 text-sm items-center justify-center bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded outline-none focus:outline-none',
+                    'flex w-full px-4 p-2 flex-1 text-sm items-center justify-center bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded outline-none focus:outline-none'
                 )}
             >
-                {themeOptions.map(({ mode, icon }) => (
-                    ternaryDarkMode === mode && <Icon key={mode}>{icon}</Icon>
-                ))}
+                {themeOptions.map(({ mode, icon }) => ternaryDarkMode === mode && <Icon key={mode}>{icon}</Icon>)}
             </Menu.Button>
             <Menu.Items
                 as={motion.div}
-                initial={{ opacity: 0, y: -10}}
-                animate={{ opacity: 1, y: 0}}
-                exit={{ opacity: 0, y: -10}}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
                 className='absolute z-[9999] right-0 w-full mt-2 origin-top-right bg-white dark:bg-zinc-900 border dark:border-white border-zinc-900 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
             >
@@ -75,8 +68,10 @@ export function DarkModeSwitch({ className, type = 'dropdown' }: ThemeSwitchProp
                                 <button
                                     className={cn(
                                         'w-full flex px-4 p-2 flex-1 text-sm items-center justify-center dark:text-white',
-                                        ternaryDarkMode === mode && 'bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded',
-                                        active && 'bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded',
+                                        ternaryDarkMode === mode &&
+                                            'bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded',
+                                        active &&
+                                            'bg-zinc-900 dark:bg-white text-white dark:text-black active:scale-95 transition rounded'
                                     )}
                                     onClick={() => setTernaryDarkMode(mode as TernaryDarkMode)}
                                 >

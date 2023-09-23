@@ -1,27 +1,25 @@
 import React, { ChangeEvent, HTMLInputTypeAttribute, useState } from 'react'
 import { v4 } from 'uuid'
-import { cn } from '@/utils'
+import { cn } from '@/lib/utils'
 import { useMediaQuery } from 'usehooks-ts'
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
-    type?: HTMLInputTypeAttribute;
-    placeholder?: string;
-    className?: string;
-    text?: string;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-    setter?: React.Dispatch<React.SetStateAction<string>>;
-};
+    type?: HTMLInputTypeAttribute
+    placeholder?: string
+    className?: string
+    text?: string
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    setter?: React.Dispatch<React.SetStateAction<string>>
+}
 
-export function Input(
-    {
-        type = 'text',
-        placeholder,
-        className,
-        text,
-        onChange,
-        ...props
-    }: InputProps,
-): React.ReactElement {
+export function Input({
+    type = 'text',
+    placeholder,
+    className,
+    text,
+    onChange,
+    ...props
+}: InputProps): React.ReactElement {
     const id: string = v4()
     const isTablet: boolean = useMediaQuery('(min-width: 768px)')
     const [isFocused, setIsFocused] = useState(false)
@@ -48,11 +46,13 @@ export function Input(
                 className={cn(
                     'w-full h-full placeholder:text-primary font-bold focus:outline-none peer placeholder-transparent resize-none',
                     {
-                        'border-b-2 bg-transparent border-t-transparent border-x-transparent py-4': !isTablet && !isFocused,
+                        'border-b-2 bg-transparent border-t-transparent border-x-transparent py-4':
+                            !isTablet && !isFocused,
                     },
                     {
-                        ' border-2 border-t-primary dark:border-t-gray border-x-primary dark:border-x-gray rounded bg-gray dark:bg-primary p-4': isTablet || isFocused,
-                    },
+                        ' border-2 border-t-primary dark:border-t-gray border-x-primary dark:border-x-gray rounded bg-gray dark:bg-primary p-4':
+                            isTablet || isFocused,
+                    }
                 )}
                 {...props}
             />
@@ -66,7 +66,7 @@ export function Input(
                         },
                         {
                             'text-sm translate-x-2': isFocused || text !== '',
-                        },
+                        }
                     )}
                 >
                     {placeholder}

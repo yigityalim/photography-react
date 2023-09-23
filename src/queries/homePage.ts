@@ -2,7 +2,7 @@ import { gql } from 'graphql-request'
 
 export const homePageQuery = gql`
     query Anasayfa {
-      anasayfaPlural {
+      anasayfas {
         id
         baslik
         aciklama
@@ -11,9 +11,7 @@ export const homePageQuery = gql`
           width
           height
         }
-        sosyalMedya {
-          raw
-        }
+        sosyalMedya 
       }
     }
 `

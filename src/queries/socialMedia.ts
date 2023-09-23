@@ -4,7 +4,7 @@ import { gql } from 'graphql-request'
 export const getSocialMedia = gql`
     query getSocialMedia {
       social(where: {
-        id: "ckxj6dmpcgi2t0b05d096vamn"
+        id: "clmvudn2l8ak00bwbfar28dxk"
       }) {
         id
         facebookUrl

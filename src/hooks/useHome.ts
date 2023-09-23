@@ -8,9 +8,9 @@ export function useHome(): UseQueryResult<Home[]> {
     const queryKey = 'get-home';
     const queryClient = useQueryClient();
     const queryResult = useQuery<Home[]>(queryKey, async (): Promise<Home[]> => {
-        const { anasayfaPlural } = await graphQLClient.request<never>(homePageQuery);
-        if (!anasayfaPlural) throw new Error('No home data found');
-        return anasayfaPlural;
+        const { anasayfas } = await graphQLClient.request<never>(homePageQuery);
+        if (!anasayfas) throw new Error('No home data found');
+        return anasayfas;
     });
 
     useEffect(() => {
