@@ -30,11 +30,11 @@ export default function Albums(): React.JSX.Element {
                 <meta name='robots' content='index, follow' />
                 <title>Albümler</title>
             </Helmet>
-            <div className='relative z-[2001] w-full h-full flex flex-col items-center justify-center gap-y-12 p-4'>
+            <div className='relative z-[2001] w-full h-full flex flex-col items-center justify-center gap-y-12 p-12'>
                 <div
                     className={cn(
                         'w-full h-full',
-                        isMobile ? 'flex flex-col gap-y-4 items-center justify-center' : 'columns-2 lg:columns-4'
+                        isMobile ? 'flex flex-col gap-y-8 items-center justify-center' : 'columns-2 lg:columns-4'
                     )}
                 >
                     {kapak.map(({ slug, kapakFotografi, baslik, id }) => (

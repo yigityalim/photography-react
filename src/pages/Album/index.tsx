@@ -43,15 +43,15 @@ export default function Album(): React.JSX.Element {
                 <title>{randomTitle()} | Mesut</title>
             </Helmet>
             <div className='p-12 md:columns-2 lg:columns-4 space-y-6'>
-                {data.map((customer, index) => (
-                    <div className='w-full flex flex-col gap-x-4 items-center justify-center gap-y-4' key={index}>
-                        <Link className='w-full h-full space-y-2' to={`/album/${params.id}/${customer.slug}`}>
-                            <span className='text-sm lg:text-xl font-bold italic'>{customer.baslik}</span>
+                {data.map(({ slug, baslik, kapakFotografi: { url, width, height } }, index) => (
+                    <div className='w-full flex flex-col gap-x-4 items-center justify-center gap-y-8' key={index}>
+                        <Link className='w-full h-full space-y-2' to={`/album/${params.id}/${slug}`}>
+                            <span className='text-sm lg:text-xl font-bold italic'>{baslik}</span>
                             <GraphImage
                                 image={{
-                                    handle: customer.kapakFotografi.url,
-                                    width: customer.kapakFotografi.width,
-                                    height: customer.kapakFotografi.height,
+                                    handle: url,
+                                    width: width,
+                                    height: height,
                                 }}
                                 fadeIn={true}
                                 fit='clip'

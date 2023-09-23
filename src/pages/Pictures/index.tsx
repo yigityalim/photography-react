@@ -35,7 +35,7 @@ export default function Pictures() {
             <div className='flex flex-col gap-y-4 items-center justify-between w-full pb-8 md:p-16 p-4'>
                 {scrollUp && (
                     <Icon
-                        className='fixed z-[9999] bottom-4 right-4 p-2 bg-primary rounded-full text-white shadow cursor-pointer active:scale-95 transition'
+                        className='fixed z-[3000] bottom-4 right-4 p-2 bg-primary rounded-full text-white shadow cursor-pointer active:scale-95 transition'
                         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >
                         arrow_upward
