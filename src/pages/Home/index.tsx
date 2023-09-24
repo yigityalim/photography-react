@@ -66,6 +66,7 @@ function MobileView(): React.JSX.Element {
     if (isLoading) return <Loader fullHeight={true} />
     if (status === 'idle') return <Loader fullHeight={true} />
     if (!data) return <Loader fullHeight={true} />
+
     const randomIndex = (): number => (data ? Math.floor(Math.random() * data[0].kapakFotograflari.length) : 0)
 
     return (
